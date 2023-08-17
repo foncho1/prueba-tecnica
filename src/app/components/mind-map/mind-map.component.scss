@@ -1,0 +1,102 @@
+.container-min-map  {
+    justify-content: end;
+}
+
+.container-min-map .mind-map {
+    background-color: #e5e5e5;
+    border: 4px solid #04006B;
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.container-min-map .mind-map .title {
+    background-color: #AFAECB;
+    position: absolute;
+    top: -30px;
+    left: -15px;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 400;
+}
+
+
+.container-min-map .sub-mind-map {
+    margin-top: 50px;
+    background-color: #e5e5e5;
+    // border: 4px solid #04006B;
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.container-min-map .sub-mind-map .content {
+    transition: .5s;
+}
+
+.container-min-map .sub-mind-map.close .content {
+    display: none;
+}
+
+.container-min-map .sub-mind-map.close.line-one::before {
+    height: 260%;
+}
+
+.container-min-map .sub-mind-map.line-one::before {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0px 0px 4px 4px;
+    border-color: 4px solid #04006B;
+    // border-radius: 0.25rem;
+    right: 100%;
+    height: 45%;
+    bottom: 95%;
+    width: 30px;
+}
+
+.container-min-map .sub-mind-map.close.line-two::before {
+    height: 260%;
+}
+
+.container-min-map .sub-mind-map.line-one::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0px 0px 0px 4px;
+    border-color: 4px solid #04006B;
+    // border-radius: 0.25rem;
+    right: 100%;
+    height: 100%;
+    top: 0%;
+    width: 30px;
+}
+
+.container-min-map .sub-mind-map.line-two::before {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0px 0px 4px 4px;
+    border-color: 4px solid #04006B;
+    // border-radius: 0.25rem;
+    right: 100%;
+    height: 50%;
+    bottom: 95%;
+    width: 30px;
+}
+
+
+.container-min-map .sub-mind-map .title {
+    background-color: #04006B;
+    border-color: 4px solid #04006B;
+    color: white;
+    position: absolute;
+    top: -30px;
+    // left: -15px;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 400;
+    cursor: pointer;
+}

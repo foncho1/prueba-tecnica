@@ -1,0 +1,75 @@
+<mat-stepper linear #stepper [formGroup]="testForm">
+  <ng-container formArrayName="testArray">
+    <mat-step
+      [formGroupName]="i"
+      [editable]="true"
+      *ngFor="let item of testArray.controls; let i = index"
+    >
+      <ng-template matStepLabel>Pregunta #{{ i + 1 }}</ng-template>
+      <div class="row">
+        <div class="col-md-12" *ngIf="getPropertiesArray(i).type === 'radio'">
+          <ng-container>
+            <label id="example-radio-group-label">{{
+              getPropertiesArray(i).title
+            }}</label>
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"
+              formControlName="value"
+            >
+              <mat-radio-button
+                class="example-radio-button"
+                *ngFor="let opt of getPropertiesArray(i).options"
+                [value]="opt"
+              >
+                {{ opt }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </ng-container>
+        </div>
+        <div class="col-md-12" *ngIf="getPropertiesArray(i).type === 'text'">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{ getPropertiesArray(i).title }}</mat-label>
+            <input type="email" matInput formControlName="value" />
+            <mat-hint>{{ getPropertiesArray(i).placeHolder }}</mat-hint>
+            <mat-error> el valor no es valido. </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12 mt-2">
+          <button
+            mat-raised-button
+            color="accent"
+            *ngIf="i !== 0"
+            matStepperPrevious
+            class="m-2"
+            [disabled]="formGroupValid(i)"
+          >
+            <i class="bx bxs-chevron-left"></i> Anterior
+          </button>
+          <button
+            *ngIf="i < testArray.controls.length - 1"
+            mat-raised-button
+            color="accent"
+            class="m-2"
+            matStepperNext
+            [disabled]="formGroupValid(i)"
+          >
+            Siguiente <i class="bx bxs-chevron-right"></i>
+          </button>
+
+          <button
+            *ngIf="i === testArray.controls.length - 1"
+            mat-raised-button
+            color="accent"
+            class="m-2"
+            matStepperNext
+            (click)="finishTest()"
+            [disabled]="formGroupValid(i)"
+          >
+            Terminar test <i class="bx bx-send"></i>
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </ng-container>
+</mat-stepper>

@@ -1,0 +1,64 @@
+<mat-card-header>
+  <mat-card-title>Mapas conceptuales</mat-card-title>
+  <mat-card-subtitle>Ejemplo de mapa conceptual</mat-card-subtitle>
+</mat-card-header>
+
+<mat-card-content>
+  <div class="container mx-auto">
+    <div class="row mt-5">
+      <div class="col-md-12 p-4">
+        <div class="row container-min-map">
+          <div class="col-12 mind-map">
+            <div class="row">
+              <div class="col-12 title">
+                <h2>Nivel 1</h2>
+              </div>
+              <div class="col-12 mt-5">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                  inventore iste eveniet maiores repudiandae consectetur neque
+                  quis, tenetur sed optio ex, expedita veniam earum atque ipsum
+                  magni libero quasi quidem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- sub  -->
+
+          <div #eleone class="col-11 sub-mind-map close line-one">
+            <div class="row">
+              <div class="col-12 title" (click)="closeMindMap(eleone)">
+                <h2>Nivel 1.1</h2>
+              </div>
+              <div class="col-12 mt-5 content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                  inventore iste eveniet maiores repudiandae consectetur neque
+                  quis, tenetur sed optio ex, expedita veniam earum atque ipsum
+                  magni libero quasi quidem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div #eletwo class="col-11 sub-mind-map line-two">
+            <div class="row">
+              <div class="col-12 title" (click)="closeMindMap(eletwo)">
+                <h2>Nivel 1.2</h2>
+              </div>
+              <div class="col-12 mt-5 content">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                  inventore iste eveniet maiores repudiandae consectetur neque
+                  quis, tenetur sed optio ex, expedita veniam earum atque ipsum
+                  magni libero quasi quidem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card-content>
