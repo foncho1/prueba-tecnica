@@ -12,6 +12,14 @@ const routes: Routes = [
     path: 'actividad-2',
     component: ActivityTwoComponent,
   },
+  {
+    path: '',
+    component: ActivityOneComponent,
+  },
+  {
+    path: '**',
+    component: ActivityOneComponent,
+  },
 ];
 
 @NgModule({

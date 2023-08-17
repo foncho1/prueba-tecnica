@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TestType } from './form.type';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,13 +10,20 @@ import { MatStepper } from '@angular/material/stepper';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent {
+  // Decorators
+
+  // Referencia a stepper
   @ViewChild('stepper') stepper!: MatStepper;
 
   // FormGroup
 
+  //Se define formulario de preguntas
   testForm: FormGroup = this._formBuilder.nonNullable.group({
+    // Definición de formarray
     testArray: this._formBuilder.array([
+      // Definición de formgroup
       this._formBuilder.nonNullable.group({
+        // Definición de formcontrols
         title: ['¿Cuál es su nombre?'],
         type: ['text'],
         value: [null, [Validators.required, Validators.minLength(3)]],
@@ -73,37 +80,48 @@ export class FormComponent {
 
   // Get
 
+  // Obtiene formarray de preguntas
   get testArray(): FormArray {
     return this.testForm.get('testArray') as FormArray;
   }
 
   // Functions
 
+  // Devuelve valores de una posicion
   getPropertiesArray(index: number): TestType {
     return this.testArray.controls[index].value;
   }
 
+  // Valida formgroup dado
   formGroupValid(index: number): boolean {
     return this.testArray.controls[index].invalid;
   }
 
+  // Validar test
   finishTest(): void {
+    // Todas las preguntas
     const questions: TestType[] = this.testArray.value;
+
+    // Todas las preguntas validables
     const validableQuestions: TestType[] = questions.filter(
       (f) => f.validable === true
     );
 
+    // Cantidad de respuestas correctas
     let correctQuestions: number = 0;
 
+    // Validación de respuestas
     for (const vq of validableQuestions) {
       if (vq.value === vq.valid) {
         correctQuestions += 1;
       }
     }
 
+    // Dice si pasó el formulario
     const isCorrect =
       correctQuestions > validableQuestions.length / 2 ? true : false;
 
+    // Mensaje usuario
     this.snackBar.open(
       `Has obtenido ${correctQuestions} correctas. ${
         isCorrect ? 'Felicitaciones' : 'Sigue estudiando'
@@ -111,9 +129,11 @@ export class FormComponent {
       'Ok',
       { duration: 6000 }
     );
-    this.testForm.reset();
-    console.log(this.testForm.value);
 
+    // Reseteo valores del formulario
+    this.testForm.reset();
+
+    // Reseteo stepper
     this.stepper.reset();
   }
 }

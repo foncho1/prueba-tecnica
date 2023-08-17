@@ -1,5 +1,6 @@
 <mat-stepper linear #stepper [formGroup]="testForm">
   <ng-container formArrayName="testArray">
+    <!-- aqui se recorren los form controls -->
     <mat-step
       [formGroupName]="i"
       [editable]="true"
@@ -7,6 +8,7 @@
     >
       <ng-template matStepLabel>Pregunta #{{ i + 1 }}</ng-template>
       <div class="row">
+        <!-- aquí se valida el tipo de control que se va a mostrar -->
         <div class="col-md-12" *ngIf="getPropertiesArray(i).type === 'radio'">
           <ng-container>
             <label id="example-radio-group-label">{{
@@ -35,7 +37,9 @@
             <mat-error> el valor no es valido. </mat-error>
           </mat-form-field>
         </div>
+        <!-- Botones de acciones con validaciones, no estarán habilitados si el formgroup es invalido  -->
         <div class="col-md-12 mt-2">
+          <!-- este boton lleva a la pagina anterior, no aparece si está en la primera pagina  -->
           <button
             mat-raised-button
             color="accent"
@@ -46,6 +50,7 @@
           >
             <i class="bx bxs-chevron-left"></i> Anterior
           </button>
+          <!-- este boton lleva a la pagina siguiente no aparece si esta en la ultima pagina  -->
           <button
             *ngIf="i < testArray.controls.length - 1"
             mat-raised-button
@@ -57,12 +62,12 @@
             Siguiente <i class="bx bxs-chevron-right"></i>
           </button>
 
+          <!-- botón de finalizar test, solo aparece si estás en la ultima pagina  -->
           <button
             *ngIf="i === testArray.controls.length - 1"
             mat-raised-button
             color="accent"
             class="m-2"
-            matStepperNext
             (click)="finishTest()"
             [disabled]="formGroupValid(i)"
           >
